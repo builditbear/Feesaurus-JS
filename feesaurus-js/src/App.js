@@ -15,7 +15,7 @@ function App() {
     ['Coating', ['None', 'AR + Scratchcoat Basic', 'AR + Scratchcoat Premium',
     'AR + Blue Light Blocker', 'AR + Anti-Fog Treatment']],
     ['Tint', ['None', 'Solid Tint', 'Gradient Tint', 'Blue Light Blocking Tint', 'Polarized',
-    'Photochromic', 'Polarized Photochromic']]
+    'Photochromic', 'Polarized Photochromic']],
   ])
   /* All fees listed here were copied from Dustin Wilson's NBN 2022 spreadsheet, as I did not have access
   /* to the 2022 NBN fees schedule at the time of this writing. */
