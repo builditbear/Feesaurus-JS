@@ -5,7 +5,7 @@ function App() {
   /* For populating the UI's select menus for Lens Type, Material, Coating, and Tint. */
   /* The user's choices for misc. treatments are communicated using labelled checkboxes instead,
   /* and so are not listed here. */
-  const options = new Map([
+  const menuOptions = new Map([
     ['Lens Preset', ['None']],
     ['Lens Type', ['Single Vision', 'Digital Single Vision', 'Bifocal', 'Digital Bifocal',
     'Trifocal', 'Standard Progressive', 'Premium Progressive',
@@ -19,7 +19,18 @@ function App() {
   ])
   /* All fees listed here were copied from Dustin Wilson's NBN 2022 spreadsheet, as I did not have access
   /* to the 2022 NBN fees schedule at the time of this writing. */
-  const lensEnhancements = new Map([
+  const lensDB = new Map([
+    /* Base Lens Type */
+    ['Single Vision', {'isMultifocal' : false, 'cost' : 0.00}],
+    ['Digital Single Vision', {'isMultifocal' : false, 'cost': 63.00}],
+    ['Bifocal', {'isMultifocal' : true, 'cost' : 0.00}],
+    ['Digital Bifocal', {'isMultifocal' : true, 'cost' : 63.00}],
+    ['Trifocal', {'isMultifocal' : true, 'cost' : 0.00}],
+    ['Standard Progressive', {'isMultifocal' : true, 'cost' : 0.00}],
+    ['Premium Progressive', {'isMultifocal' : true, 'cost' : 48.90}],
+    ['Digital/Freeform Progressive', {'isMultifocal' : true, 'cost' : 68.36}],
+    ['Computer Lens', {'isMultifocal' : true, 'cost' : 46.50}],
+    ['Blended Multifocals', {'isMultifocal' : true, 'cost' : 0.00}],
     /* Material */
     ['CR-39', {'svCost' : 0.00, 'mfCost' : 0.00}],
     ['Polycarbonate', {'svCost' : 0.00, 'mfCost' : 0.00}],
@@ -49,25 +60,8 @@ function App() {
     ['UV Coating', {'svCost' : 0.00, 'mfCost' : 0.00}],
     ['Mirror Coating', {'svCost' : 50.26, 'mfCost' : 50.26}]
   ])
-  const baseAttributes = new Map([
-    ['Single Vision', {'isMultifocal' : false, 'cost' : 0.00}],
-    ['Digital Single Vision', {'isMultifocal' : false, 'cost': 63.00}],
-    ['Bifocal', {'isMultifocal' : true, 'cost' : 0.00}],
-    ['Digital Bifocal', {'isMultifocal' : true, 'cost' : 63.00}],
-    ['Trifocal', {'isMultifocal' : true, 'cost' : 0.00}],
-    ['Standard Progressive', {'isMultifocal' : true, 'cost' : 0.00}],
-    ['Premium Progressive', {'isMultifocal' : true, 'cost' : 48.90}],
-    ['Digital/Freeform Progressive', {'isMultifocal' : true, 'cost' : 68.36}],
-    ['Computer Lens', {'isMultifocal' : true, 'cost' : 46.50}],
-    ['Blended Multifocals', {'isMultifocal' : true, 'cost' : 0.00}]
-  ])
 
-  const lensAttributeDB = new Map([
-    ['Base Attributes', baseAttributes], 
-    ['Lens Enhancements', lensEnhancements]
-  ])
-
-  return <FeeCalculator name="Feesaurus" options={options} db={lensAttributeDB}/>;
+  return <FeeCalculator name="Feesaurus" menuOptions={menuOptions} lensDB={lensDB}/>;
 }
 
 export default App;
