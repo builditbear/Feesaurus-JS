@@ -21,16 +21,16 @@ function App() {
   /* to the 2022 NBN fees schedule at the time of this writing. */
   const lensDB = new Map([
     /* Base Lens Type */
-    ['Single Vision', {'isMultifocal' : false, 'cost' : 0.00}],
-    ['Digital Single Vision', {'isMultifocal' : false, 'cost': 63.00}],
-    ['Bifocal', {'isMultifocal' : true, 'cost' : 0.00}],
-    ['Digital Bifocal', {'isMultifocal' : true, 'cost' : 63.00}],
-    ['Trifocal', {'isMultifocal' : true, 'cost' : 0.00}],
-    ['Standard Progressive', {'isMultifocal' : true, 'cost' : 0.00}],
-    ['Premium Progressive', {'isMultifocal' : true, 'cost' : 48.90}],
-    ['Digital/Freeform Progressive', {'isMultifocal' : true, 'cost' : 68.36}],
-    ['Computer Lens', {'isMultifocal' : true, 'cost' : 46.50}],
-    ['Blended Multifocals', {'isMultifocal' : true, 'cost' : 0.00}],
+    ['Single Vision', {'isMultifocal' : false, 'svCost' : 0.00}],
+    ['Digital Single Vision', {'isMultifocal' : false, 'svCost': 63.00}],
+    ['Bifocal', {'isMultifocal' : true, 'mfCost' : 0.00}],
+    ['Digital Bifocal', {'isMultifocal' : true, 'mfCost' : 63.00}],
+    ['Trifocal', {'isMultifocal' : true, 'mfCost' : 0.00}],
+    ['Standard Progressive', {'isMultifocal' : true, 'mfCost' : 0.00}],
+    ['Premium Progressive', {'isMultifocal' : true, 'mfCost' : 48.90}],
+    ['Digital/Freeform Progressive', {'isMultifocal' : true, 'mfCost' : 68.36}],
+    ['Computer Lens', {'isMultifocal' : true, 'mfCost' : 46.50}],
+    ['Blended Multifocals', {'isMultifocal' : true, 'mfCost' : 0.00}],
     /* Material */
     ['CR-39', {'svCost' : 0.00, 'mfCost' : 0.00}],
     ['Polycarbonate', {'svCost' : 0.00, 'mfCost' : 0.00}],
@@ -38,11 +38,13 @@ function App() {
     ['Hi-Index 1.60 - 1.69', {'svCost' : 55.00, 'mfCost' : 65.90}],
     ['Hi-Index 1.70 & Higher', {'svCost' : 75.50, 'mfCost' : 86.34}],
     /* Coatings */
+    ['None', {'svCost': 0.00, 'mfCost' : 0.00}],
     ['A/R + S/C Basic', {'svCost' : 0.00, 'mfCost' : 0.00}],
     ['A/R + S/C Premium', {'svCost' : 27.80, 'mfCost' : 27.80}],
     ['A/R + Blue Light Blocker', {'svCost' : 35.80, 'mfCost' : 35.80}],
     ['A/R + Anti-Fog Treatment', {'svCost' : 40.30, 'mfCost' : 40.30}],
     /* Tints */
+    ['None', {'svCost': 0.00, 'mfCost' : 0.00}],
     ['Solid Tint', {'svCost' : 0.00, 'mfCost' : 0.00}],
     ['Gradient Tint', {'svCost' : 0.00, 'mfCost' : 0.00}],
     ['Blue Light Blocking Tint', {'svCost' : 27.00, 'mfCost' : 27.00}],
@@ -58,7 +60,7 @@ function App() {
     ['Beveled Edges, Facets - Two Sides', {'svCost' : 0.00, 'mfCost' : 0.00}],
     ['Wrap Frame', {'svCost' : 32.00, 'mfCost' : 32.00}],
     ['UV Coating', {'svCost' : 0.00, 'mfCost' : 0.00}],
-    ['Mirror Coating', {'svCost' : 50.26, 'mfCost' : 50.26}]
+    ['Mirror Coating', {'svCost' : 50.26, 'mfCost' : 50.26}],
   ])
 
   return <FeeCalculator name="Feesaurus" menuOptions={menuOptions} lensDB={lensDB}/>;

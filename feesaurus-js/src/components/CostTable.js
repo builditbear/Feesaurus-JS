@@ -23,8 +23,8 @@ export default class CostTable extends React.Component {
             'lensPreset' : 'None',
             'lensType' : 'Single Vision',
             'material' : 'CR-39',
-            'coating' : 'none',
-            'tint' : 'none',
+            'coating' : 'None',
+            'tint' : 'None',
             'Polish, coat, paint, groove, rimless mount' : false,
             'Drilling: 2 or 4 holes' : false,
             'Oversize (>= 56mm)' : false,
@@ -33,7 +33,8 @@ export default class CostTable extends React.Component {
             'Beveled Edges, Facets - Two Sides' : false,
             'Wrap Frame' : false,
             'UV Coating' : false,
-            'Mirror Coating' : false, 
+            'Mirror Coating' : false,
+            'isMultifocal' : false, 
         }
     }
 
@@ -106,66 +107,66 @@ export default class CostTable extends React.Component {
         return (
             <div className = 'cost-table'>
                 <br/>
-                <HeaderRow name='Lens Preset' type='select' menuOptions={this.props.menuOptions} 
-                           onChange={this.onLensPresetChange} state={this.state.lensPreset}
-                            lensDB={this.lensDB}
+                <HeaderRow name='Lens Preset' menuOptions={this.props.menuOptions} 
+                           onChange={this.onLensPresetChange} state={[this.state.lensPreset, this.state.isMultifocal]}
+                            lensDB={this.props.lensDB}
                            />
                 <br/>
-                <RadioAttrRow name='Exam?' type='radio' menuOptions={this.props.menuOptions} />
+                <RadioAttrRow name='Exam?' menuOptions={this.props.menuOptions} />
                 <SelectAttrRow name='Lens Type' type='select' menuOptions={this.props.menuOptions}
-                             onChange={this.onLensTypeChange} state={this.state.lensType}
-                            lensDB={this.lensDB}
+                             onChange={this.onLensTypeChange} state={[this.state.lensType, this.state.isMultifocal]}
+                            lensDB={this.props.lensDB}
                 />
-                <SelectAttrRow name='Material' type='select' menuOptions={this.props.menuOptions}
-                             onChange={this.onMaterialChange} state={this.state.material}
-                            lensDB={this.lensDB}
+                <SelectAttrRow name='Material' menuOptions={this.props.menuOptions}
+                             onChange={this.onMaterialChange} state={[this.state.material, this.state.isMultifocal]}
+                            lensDB={this.props.lensDB}
                 />
-                <SelectAttrRow name='Coating' type='select' menuOptions={this.props.menuOptions}
-                             onChange={this.onCoatingChange} state={this.state.coating}
-                            lensDB={this.lensDB}
+                <SelectAttrRow name='Coating' menuOptions={this.props.menuOptions}
+                             onChange={this.onCoatingChange} state={[this.state.coating, this.state.isMultifocal]}
+                            lensDB={this.props.lensDB}
                 />
-                <SelectAttrRow name='Tint' type='select' menuOptions={this.props.menuOptions}
-                             onChange={this.onTintChange} state={this.state.tint}
-                            lensDB={this.lensDB}
+                <SelectAttrRow name='Tint' menuOptions={this.props.menuOptions}
+                             onChange={this.onTintChange} state={[this.state.tint, this.state.isMultifocal]}
+                            lensDB={this.props.lensDB}
                 />
                 <br/>
                 <AggrCostRow name='Misc. Treatments'/>
                 {/* Misc. Attributes Section */}
-                <CheckboxAttrRow name='Polish, coat, paint, groove, rimless mount' type='checkbox' menuOptions={this.props.menuOptions}
-                             onChange={this.onPolishChange} state={this.state['Polish, coat, paint, groove, rimless mount']}
-                            lensDB={this.lensDB}
+                <CheckboxAttrRow name='Polish, coat, paint, groove, rimless mount' 
+                                 onChange={this.onPolishChange} state={this.state['Polish, coat, paint, groove, rimless mount']}
+                                 lensDB={this.props.lensDB}
                 />
-                <CheckboxAttrRow name='Drilling: 2 or 4 holes' type='checkbox' menuOptions={this.props.menuOptions}
-                             onChange={this.onDrillingChange} state={this.state['Drilling: 2 or 4 holes']}
-                            lensDB={this.lensDB}
+                <CheckboxAttrRow name='Drilling: 2 or 4 holes'
+                                 onChange={this.onDrillingChange} state={this.state['Drilling: 2 or 4 holes']}
+                                 lensDB={this.props.lensDB}
                 />
-                <CheckboxAttrRow name='Oversize (>= 56mm)' type='checkbox' menuOptions={this.props.menuOptions}
-                             onChange={this.onOversizeChange} state={this.state['Oversize (>= 56mm)']}
-                            lensDB={this.lensDB}
+                <CheckboxAttrRow name='Oversize (>= 56mm)'
+                                 onChange={this.onOversizeChange} state={this.state['Oversize (>= 56mm)']}
+                                 lensDB={this.props.lensDB}
                 />
-                <CheckboxAttrRow name='Slab Off Prism' type='checkbox' menuOptions={this.props.menuOptions}
-                             onChange={this.onSlabOffChange} state={this.state['Slab Off']}
-                            lensDB={this.lensDB}
+                <CheckboxAttrRow name='Slab Off Prism'
+                                 onChange={this.onSlabOffChange} state={this.state['Slab Off']}
+                                 lensDB={this.props.lensDB}
                 /> 
-                <CheckboxAttrRow name='Beveled Edges, Facets - One Side' type='checkbox' menuOptions={this.props.menuOptions}
-                             onChange={this.onBeveledEdge1Change} state={this.state['Beveled Edges, Facets - One Side']}
-                            lensDB={this.lensDB}
+                <CheckboxAttrRow name='Beveled Edges, Facets - One Side'
+                                 onChange={this.onBeveledEdge1Change} state={this.state['Beveled Edges, Facets - One Side']}
+                                 lensDB={this.props.lensDB}
                 /> 
-                <CheckboxAttrRow name='Beveled Edges, Facets - Two Sides' type='checkbox' menuOptions={this.props.menuOptions}
-                             onChange={this.onBeveledEdge2Change} state={this.state['Beveled Edges, Facets - Two Sides']}
-                            lensDB={this.lensDB}
+                <CheckboxAttrRow name='Beveled Edges, Facets - Two Sides'
+                                 onChange={this.onBeveledEdge2Change} state={this.state['Beveled Edges, Facets - Two Sides']}
+                                 lensDB={this.props.lensDB}
                 /> 
-                <CheckboxAttrRow name='Wrap Frame' type='checkbox' menuOptions={this.props.menuOptions}
-                             onChange={this.onWrapChange} state={this.state['Wrap Frame']}
-                            lensDB={this.lensDB}
+                <CheckboxAttrRow name='Wrap Frame'
+                                 onChange={this.onWrapChange} state={this.state['Wrap Frame']}
+                                 lensDB={this.props.lensDB}
                 /> 
-                <CheckboxAttrRow name='UV Coating' type='checkbox' menuOptions={this.props.menuOptions}
-                             onChange={this.onUVChange} state={this.state['UV Coating']}
-                            lensDB={this.lensDB}
+                <CheckboxAttrRow name='UV Coating'
+                                 onChange={this.onUVChange} state={this.state['UV Coating']}
+                                 lensDB={this.props.lensDB}
                 /> 
-                <CheckboxAttrRow name='Mirror Coating' type='checkbox' menuOptions={this.props.menuOptions}
-                             onChange-={this.onMirrorCoatingChange} state={this.state['Mirror Coating']}
-                            lensDB={this.lensDB}
+                <CheckboxAttrRow name='Mirror Coating'
+                                 onChange-={this.onMirrorCoatingChange} state={this.state['Mirror Coating']}
+                                 lensDB={this.props.lensDB}
                 />  
                 <TotalRow/>        
             </div>
@@ -203,6 +204,7 @@ class SelectAttrRow extends React.Component {
             <div>
                 <label htmlFor={this.props.name}>{this.props.name}</label>
                 <MenuSelector name={this.props.name} menuOptions={this.props.menuOptions}/>
+                <AttrCost state={this.props.state} lensDB={this.props.lensDB}/>
             </div>
         );
     }
@@ -263,17 +265,22 @@ class RadioAttrRow extends React.Component {
 }
 
 /* Displays the cost of any lens attribute. Requires the name of the attribute to be
-   looked up and the appropriate data */
-// class AttrCost extends React.Component {
-//     render() {
-//         if(this.state == 'None') {
-//             return <h4>0.00</h4>
-//         } else {
-
-//         }
-//     }
-
-// }
+   looked up and the lensDB passed through props.*/
+function AttrCost(props) {
+    let attrName = props.state[0]
+    // console.log('The attribute cost of, ' + attrName + ' is, ' + props.lensDB.get(attrName).svCost);
+    let cost;
+    if(props.isMultifocal) {
+        cost = props.lensDB.get(attrName).mfCost;
+    } else {
+        cost = props.lensDB.get(attrName).svCost;
+    }
+    return(
+        <h4 style={inline}>
+            ${cost}
+        </h4>
+    );
+}
 
 function RadioButtonSelector(props) {
     console.log('Now entering RadioButtonSelector for row, ' + props.name + '.')
