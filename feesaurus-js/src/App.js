@@ -12,8 +12,8 @@ function App() {
     'Digital/Freeform Progressive', 'Computer Lens', 'Blended Multifocals']],
     ['Material', ['CR-39', 'Polycarbonate', 'Mid-Index 1.50 - 1.59/Trivex',
     'Hi-Index 1.60 - 1.69', 'Hi-Index 1.70 & Higher']],
-    ['Coating', ['None', 'AR + Scratchcoat Basic', 'AR + Scratchcoat Premium',
-    'AR + Blue Light Blocker', 'AR + Anti-Fog Treatment']],
+    ['Coating', ['None', 'A/R + S/C Basic', 'A/R + S/C Premium',
+    'A/R + Blue Light Blocker', 'A/R + Anti-Fog Treatment']],
     ['Tint', ['None', 'Solid Tint', 'Gradient Tint', 'Blue Light Blocking Tint', 'Polarized',
     'Photochromic', 'Polarized Photochromic']],
   ])
@@ -34,7 +34,7 @@ function App() {
     /* Material */
     ['CR-39', {'svCost' : 0.00, 'mfCost' : 0.00}],
     ['Polycarbonate', {'svCost' : 0.00, 'mfCost' : 0.00}],
-    ['Mid Index 1.50 - 1.59/Trivex', {'svCost' : 46.40, 'mfCost' : 51.70}],
+    ['Mid-Index 1.50 - 1.59/Trivex', {'svCost' : 46.40, 'mfCost' : 51.70}],
     ['Hi-Index 1.60 - 1.69', {'svCost' : 55.00, 'mfCost' : 65.90}],
     ['Hi-Index 1.70 & Higher', {'svCost' : 75.50, 'mfCost' : 86.34}],
     /* Coatings */

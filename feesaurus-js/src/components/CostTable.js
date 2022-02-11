@@ -43,7 +43,10 @@ export default class CostTable extends React.Component {
     }
 
     onLensTypeChange(e) {
-        this.setState({lensType : e.target.value});
+        let newLensType = e.target.value;
+        this.setState({lensType : newLensType});
+        // Update whether or not this lens is a multifocal lens.
+        this.setState({isMultifocal : (this.props.lensDB.get(newLensType).isMultifocal)});
     }
 
     onMaterialChange(e) {
@@ -179,23 +182,13 @@ const inline = {
     display: 'inline'
 }
 
-function HeaderRow(props){
-    return (
-        <div>
-            <label htmlFor={props.name}>{props.name}</label>
-            <MenuSelector name={props.name} menuOptions={props.menuOptions}/>
-            <h2>Pt. Responsibility</h2>
-        </div>
-    );
-}
-
-class SelectAttrRow extends React.Component {
+class HeaderRow extends React.Component{
     constructor(props) {
         super(props)
-        this.handleChange = this.handleChange.bind(this);
+        this.onChange = this.onChange.bind(this);
     }
 
-    handleChange(e) {
+    onChange(e) {
         this.props.onChange(e.target.value);
     }
 
@@ -203,7 +196,22 @@ class SelectAttrRow extends React.Component {
         return (
             <div>
                 <label htmlFor={this.props.name}>{this.props.name}</label>
-                <MenuSelector name={this.props.name} menuOptions={this.props.menuOptions}/>
+                <MenuSelector name={this.props.name} menuOptions={this.props.menuOptions} 
+                              onChange={this.props.onChange}/>
+                <h2>Pt. Responsibility</h2>
+            </div>
+        );
+    }
+}
+
+class SelectAttrRow extends React.Component {
+    render() {
+        return (
+            <div>
+                <label htmlFor={this.props.name}>{this.props.name}</label>
+                <MenuSelector name={this.props.name} menuOptions={this.props.menuOptions}
+                              onChange={this.props.onChange}
+                />
                 <AttrCost state={this.props.state} lensDB={this.props.lensDB}/>
             </div>
         );
@@ -212,12 +220,12 @@ class SelectAttrRow extends React.Component {
 
 class MenuSelector extends React.Component {
     render() {
-        console.log('Now entering MenuSelector for row, ' + this.props.name + '.')
+        // console.log('Now entering MenuSelector for row, ' + this.props.name + '.')
         let optionsList = this.props.menuOptions.get(this.props.name).map((item, index) => {
             return <option key={index} value={item}>{item}</option>
         });
         return(    
-            <select name={this.props.name}>
+            <select name={this.props.name} onChange={this.props.onChange}>
                 {optionsList}
             </select>
         );
@@ -227,10 +235,10 @@ class MenuSelector extends React.Component {
 class CheckboxAttrRow extends React.Component {
     constructor(props) {
         super(props)
-        this.handleChange = this.handleChange.bind(this);
+        this.onChange = this.onChange.bind(this);
     }
 
-    handleChange(e) {
+    onChange(e) {
         this.props.onChange(e.target.value);
     }
 
@@ -247,10 +255,10 @@ class CheckboxAttrRow extends React.Component {
 class RadioAttrRow extends React.Component {
     constructor(props) {
         super(props)
-        this.handleChange = this.handleChange.bind(this);
+        this.onChange = this.onChange.bind(this);
     }
 
-    handleChange(e) {
+    onChange(e) {
         this.props.onChange(e.target.value);
     }
     
@@ -267,10 +275,12 @@ class RadioAttrRow extends React.Component {
 /* Displays the cost of any lens attribute. Requires the name of the attribute to be
    looked up and the lensDB passed through props.*/
 function AttrCost(props) {
-    let attrName = props.state[0]
+    let attrName = props.state[0];
+    let isMultifocal = props.state[1];
+    // debugger;
     // console.log('The attribute cost of, ' + attrName + ' is, ' + props.lensDB.get(attrName).svCost);
     let cost;
-    if(props.isMultifocal) {
+    if(isMultifocal) {
         cost = props.lensDB.get(attrName).mfCost;
     } else {
         cost = props.lensDB.get(attrName).svCost;
