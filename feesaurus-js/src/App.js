@@ -4,7 +4,7 @@ import TitleRow from "./components/TitleRow.js";
 import MenuSelector from "./components/MenuSelector.js";
 import LensAttrCost from "./components/LensAttrCost.js";
 import CheckboxSelector from "./components/CheckboxSelector.js";
-import RadioButtonSelector from "./components/CheckboxSelector.js";
+import RadioButtonSelector from "./components/RadioButtonSelector.js";
 
 function App() {
   /* For populating the UI's select menus for Lens Type, Material, Coating, and Tint. */
@@ -256,7 +256,6 @@ function SelectAttrRow({
   console.log("Calling rendering SelectAttrRow for " + name + ".");
   console.log("The attribute's current value is " + currentAttr + ".");
   console.log("Is the current lens a multifocal? : " + isMultifocal);
-  debugger;
   return (
     <div>
       <label htmlFor={name}>{name}</label>
